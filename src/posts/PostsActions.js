@@ -5,10 +5,10 @@ export function postsHasErrored(bool) {
     };
 }
 
-export function postsIsLoading(bool) {
+export function postsIsFetching(bool) {
     return {
-        type: 'POSTS_IS_LOADING',
-        isLoading: bool
+        type: 'POSTS_IS_FETCHING',
+        isFetching: bool
     };
 }
 
@@ -21,7 +21,7 @@ export function postsFetchDataSuccess(posts) {
 
 export function postsFetchData(url) {
     return (dispatch) => {
-        dispatch(itemsIsLoading(true));
+        dispatch(postsIsLoading(true));
 
         fetch(url)
             .then((response) => {
@@ -29,15 +29,15 @@ export function postsFetchData(url) {
                     throw Error(response.statusText);
                 }
 
-                dispatch(itemsIsLoading(false));
+                dispatch(postsIsLoading(false));
 
                 return response;
             })
             .then((response) => response.json())
-            .then((items) => dispatch(itemsFetchDataSuccess(items)))
+            .then((posts) => dispatch(postsFetchDataSuccess(posts)))
             .catch((e) => {
                 console.log(e);
-                dispatch(itemsHasErrored(true))
+                dispatch(postsHasErrored(true))
             });
     };
 }
