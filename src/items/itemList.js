@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { itemsFetchData, itemsDeleteById, itemsDeleteAll } from '../actions/items';
+import { itemsFetchData, itemsDeleteById, itemsDeleteAll } from './itemsActions';
 
 class ItemList extends Component {
     componentDidMount() {
